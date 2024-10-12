@@ -25,7 +25,7 @@ router.post("/signup", async (req, res) => {
         //  JWT token
         const payload = { id: user._id, email: user.email };
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
-
+        window.localStorage.setItem('token', token);
         res.status(201).json({ token });
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
@@ -52,8 +52,7 @@ router.post("/signin", async (req, res) => {
         //  JWT token
         const payload = { id: user._id, email: user.email };
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-        res.json({ token });
+        window.localStorage.setItem('token', token);
     } catch (e) {
         res.status(500).json({
             message: "Unable to sign in"
