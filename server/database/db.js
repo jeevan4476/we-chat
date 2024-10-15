@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
-//connection for mongodb locally using docker
 const connection = async ( username, password)=>{
-    const url = `mongodb://${username}:${password}@localhost:27017/`  
+    const url = `mongodb://localhost:27017/`  
     try{
         await mongoose.connect(url);
+        console.log("connected to database");
     }catch(e){
         console.log("error while connecting",e);
     }

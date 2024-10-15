@@ -7,7 +7,6 @@ export function startWebSocketServer(server){
     const wss = new WebSocketServer({server});
 
     wss.on('connection',(ws)=>{
-        const token = window.getItem('token');
         let userId;
         try{
             const decoded = jwt.verify(token,process.env.JWT_SECRET);
